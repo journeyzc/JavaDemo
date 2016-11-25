@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>FilterLoginDemo</display-name>
+	<welcome-file-list>
+		<welcome-file>list.html</welcome-file>
+		<welcome-file>list.htm</welcome-file>
+		<welcome-file>list.jsp</welcome-file>
+	</welcome-file-list>
+	<!-- 用户信息放入到 session 中的键的名字 -->
+	<context-param>
+		<param-name>userSessionKey</param-name>
+		<param-value>USERSESSIONKEY</param-value>
+	</context-param>
+	<!-- 若未登录,需重定向的页面 -->
+	<context-param>
+		<param-name>rediretPage</param-name>
+		<param-value>/login.jsp</param-value>
+	</context-param>
+	<!-- 不需要拦截(或检查)的URL 列表 -->
+	<context-param>
+		<param-name>uncheckedUrls</param-name>
+		<param-value>/a.jsp,/list.jsp,/login.jsp,/doLogin.jsp</param-value>
+	</context-param>
+
+
+	<filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>com.journey.javaweb.filterlogin.LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>loginFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
+</web-app>
